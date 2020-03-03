@@ -3331,7 +3331,7 @@
   sizes:
     - 32
 - name: cloud-foundry--1
-  friendly_name: Cloud foundry 1
+  friendly_name: Cloud Foundry 1
   sizes:
     - 32
   aliases:
