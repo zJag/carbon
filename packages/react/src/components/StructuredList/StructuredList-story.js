@@ -7,6 +7,7 @@
 
 import React from 'react';
 import { storiesOf } from '@storybook/react';
+import { withKnobs, boolean } from '@storybook/addon-knobs';
 import { CheckmarkFilled16 } from '@carbon/icons-react';
 import {
   StructuredListWrapper,
@@ -21,11 +22,16 @@ import { settings } from 'carbon-components';
 
 const { prefix } = settings;
 
+const props = () => ({
+  condensed: boolean('Condensed (condensed)', false),
+});
+
 storiesOf('StructuredList', module)
+  .addDecorator(withKnobs)
   .add(
     'Simple',
     () => (
-      <StructuredListWrapper>
+      <StructuredListWrapper {...props()}>
         <StructuredListHead>
           <StructuredListRow head>
             <StructuredListCell head>ColumnA</StructuredListCell>
@@ -97,7 +103,7 @@ storiesOf('StructuredList', module)
         ));
       };
       return (
-        <StructuredListWrapper selection border>
+        <StructuredListWrapper selection border {...props()}>
           <StructuredListHead>
             <StructuredListRow head>
               <StructuredListCell head>ColumnA</StructuredListCell>
@@ -124,8 +130,8 @@ storiesOf('StructuredList', module)
     'skeleton',
     () => (
       <div style={{ width: '800px' }}>
-        <StructuredListSkeleton />
-        <StructuredListSkeleton border />
+        <StructuredListSkeleton {...props()} />
+        <StructuredListSkeleton border {...props()} />
       </div>
     ),
     {

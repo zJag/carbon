@@ -26,6 +26,11 @@ export class StructuredListWrapper extends Component {
     className: PropTypes.string,
 
     /**
+     * Specify whether your StructuredListWrapper should use condensed padding on StructuredListCell descendants
+     */
+    condensed: PropTypes.bool,
+
+    /**
      * Specify whether a border should be added to your StructuredListWrapper
      */
     border: PropTypes.bool,
@@ -42,6 +47,7 @@ export class StructuredListWrapper extends Component {
   };
 
   static defaultProps = {
+    condensed: false,
     border: false,
     selection: false,
     ariaLabel: 'Structured list section',
@@ -51,6 +57,7 @@ export class StructuredListWrapper extends Component {
     const {
       children,
       selection,
+      condensed,
       className,
       border,
       ariaLabel,
@@ -58,6 +65,7 @@ export class StructuredListWrapper extends Component {
     } = this.props;
 
     const classes = classNames(`${prefix}--structured-list`, className, {
+      [`${prefix}--structured-list--condensed`]: condensed,
       [`${prefix}--structured-list--border`]: border,
       [`${prefix}--structured-list--selection`]: selection,
     });

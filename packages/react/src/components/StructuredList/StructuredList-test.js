@@ -33,17 +33,31 @@ describe('StructuredListWrapper', () => {
       expect(wrapper.hasClass('extra-class')).toEqual(true);
     });
 
+    it('By default, condensed prop is false', () => {
+      expect(wrapper.prop('condensed')).toBeFalsy();
+      expect(wrapper.hasClass(`${prefix}--structured-list--condensed`)).toEqual(
+        false
+      );
+    });
+
     it('By default, border prop is false', () => {
-      wrapper.setProps({ border: false });
+      expect(wrapper.prop('border')).toBeFalsy();
       expect(wrapper.hasClass(`${prefix}--structured-list--border`)).toEqual(
         false
       );
     });
 
     it('By default, selection prop is false', () => {
-      wrapper.setProps({ border: false });
+      expect(wrapper.prop('selection')).toBeFalsy();
       expect(wrapper.hasClass(`${prefix}--structured-list--selection`)).toEqual(
         false
+      );
+    });
+
+    it('Should add the modifier class for condensed when condensed prop is true', () => {
+      wrapper.setProps({ condensed: true });
+      expect(wrapper.hasClass(`${prefix}--structured-list--condensed`)).toEqual(
+        true
       );
     });
 

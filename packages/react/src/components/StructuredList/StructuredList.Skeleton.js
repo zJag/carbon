@@ -12,10 +12,17 @@ import { settings } from 'carbon-components';
 
 const { prefix } = settings;
 
-const StructuredListSkeleton = ({ rowCount, border, className, ...rest }) => {
+const StructuredListSkeleton = ({
+  rowCount,
+  condensed,
+  border,
+  className,
+  ...rest
+}) => {
   const StructuredListSkeletonClasses = cx(className, {
     [`${prefix}--skeleton`]: true,
     [`${prefix}--structured-list`]: true,
+    [`${prefix}--structured-list--condensed`]: condensed,
     [`${prefix}--structured-list--border`]: border,
   });
 
@@ -58,6 +65,11 @@ StructuredListSkeleton.propTypes = {
   rowCount: PropTypes.number,
 
   /**
+   * Specify whether your StructuredListSkeleton should use condensed padding on StructuredListCell descendants
+   */
+  condensed: PropTypes.bool,
+
+  /**
    * Specify whether a border should be added to your StructuredListSkeleton
    */
   border: PropTypes.bool,
@@ -70,6 +82,7 @@ StructuredListSkeleton.propTypes = {
 
 StructuredListSkeleton.defaultProps = {
   rowCount: 5,
+  condensed: false,
   border: false,
 };
 
