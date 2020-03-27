@@ -308,6 +308,20 @@ describe('Icon-only button', () => {
       expect(wrapper.find(`.${prefix}--assistive-text`).length).toEqual(1);
     });
   });
+
+  describe('Renders icon-only props as expected', () => {
+    const wrapper = shallow(<Button hasIconOnly />);
+
+    it('should set aria-label if iconDescription is passed via props', () => {
+      wrapper.setProps({ iconDescription: 'icon-label' });
+      expect(wrapper.props()['aria-label']).toEqual('icon-label');
+    });
+
+    it('should override aria-label if "aria-label" is passed via props', () => {
+      wrapper.setProps({ 'aria-label': 'button-label' });
+      expect(wrapper.props()['aria-label']).toEqual('button-label');
+    });
+  });
 });
 
 describe('ButtonSkeleton', () => {

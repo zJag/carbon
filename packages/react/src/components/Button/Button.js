@@ -63,6 +63,7 @@ const Button = React.forwardRef(function Button(
   );
 
   let component = 'button';
+  let assistiveText = null;
   let otherProps = {
     disabled,
     type,
@@ -70,9 +71,15 @@ const Button = React.forwardRef(function Button(
   const anchorProps = {
     href,
   };
-  const assistiveText = hasIconOnly ? (
-    <span className={`${prefix}--assistive-text`}>{iconDescription}</span>
-  ) : null;
+  if (hasIconOnly) {
+    assistiveText = (
+      <span className={`${prefix}--assistive-text`}>{iconDescription}</span>
+    );
+    otherProps = {
+      ...otherProps,
+      'aria-label': other['aria-label'] || iconDescription,
+    };
+  }
   if (as) {
     component = as;
     otherProps = {
